@@ -7,23 +7,22 @@
 
 /*Style the body*/
 body {
-	height: 100vh;
-	margin: 0;
-	font-family: "Lato", sans-serif;
 	background-image: linear-gradient(
 		0deg,
-		rgb(247, 247, 247) 23.8%,
-		rgb(252, 221, 221) 92%
+		rgba(247, 247, 247, 1) 23.8%,
+		rgba(252, 221, 221, 1) 92%
 	);
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	font-family: "Lato", sans-serif;
+	margin: 0;
 }
 
-/*Styles the white background where the song title and image are*/
 .music-container {
-	background-color: white;
+	background-color: #fff;
 	border-radius: 15px;
 	box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
 	display: flex;
@@ -33,50 +32,81 @@ body {
 	z-index: 10;
 }
 
-/*Gives some style to the container of the image*/
 .img-container {
 	position: relative;
 	width: 110px;
 }
 
-/*Styles to add little dot in the middle of image to make it look like a vinyl*/
 .img-container::after {
 	content: "";
-	background-color: white;
-	height: 20px;
-	width: 20px;
-	position: absolute;
-	left: 50%;
-	bottom: 50%;
+	background-color: #fff;
 	border-radius: 50%;
-	transform: translate(-50%, -50%);
+	position: absolute;
+	bottom: 85%;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	transform: translate(-50%, 50%);
 }
 
-/*Styles the Image that from the song*/
 .img-container img {
-	width: inherit;
-	height: 110px;
 	border-radius: 50%;
 	object-fit: cover;
-	position: absolute; /*This position might need to change later on*/
+	height: 110px;
+	width: inherit;
+	position: absolute;
 	bottom: 0;
 	left: 0;
+	animation: rotate 3s linear infinite;
 
-	animation: rotate 3s linear infinite; /*we will create the rotate action*/
-
-	animation-play-state: paused; /*Tihs pauses the animation of the image*/
+	animation-play-state: paused;
 }
 
 .music-container.play .img-container img {
 	animation-play-state: running;
 }
 
-/* creating the rotate actio, where it transforms from 0deg to 360deg*/
 @keyframes rotate {
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+/*Place the buttons in a better manner*/
+.navigation {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1;
+}
+
+/*Style the buttons*/
+.action-btn {
+	background-color: white;
+	border: 0;
+	color: #dfdbfe;
+	font-size: 20px;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 20px;
+}
+
+/*Make the Play button bigger*/
+.action-btn-big {
+	color: #cdc2d0;
+	font-size: 30px;
+}
+
+/*removes the outlines from the buttons*/
+.action-btn:focus {
+	outline: 0;
+}
+
+.music-info {
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 15px 15px 0 0;
 }
