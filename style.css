@@ -1,9 +1,11 @@
 @import url("'https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
+/*Overrules some pre stated rules*/
 * {
 	box-sizing: border-box;
 }
 
+/*Style the body*/
 body {
 	height: 100vh;
 	margin: 0;
@@ -19,6 +21,7 @@ body {
 	justify-content: center;
 }
 
+/*Styles the white background where the song title and image are*/
 .music-container {
 	background-color: white;
 	border-radius: 15px;
@@ -30,21 +33,50 @@ body {
 	z-index: 10;
 }
 
+/*Gives some style to the container of the image*/
 .img-container {
 	position: relative;
 	width: 110px;
 }
 
+/*Styles to add little dot in the middle of image to make it look like a vinyl*/
 .img-container::after {
 	content: "";
+	background-color: white;
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	left: 50%;
+	bottom: 50%;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
 }
 
+/*Styles the Image that from the song*/
 .img-container img {
 	width: inherit;
 	height: 110px;
 	border-radius: 50%;
 	object-fit: cover;
-	position: relative; /*This position might need to change later on*/
+	position: absolute; /*This position might need to change later on*/
 	bottom: 0;
 	left: 0;
+
+	animation: rotate 3s linear infinite; /*we will create the rotate action*/
+
+	animation-play-state: paused; /*Tihs pauses the animation of the image*/
+}
+
+.music-container.play .img-container img {
+	animation-play-state: running;
+}
+
+/* creating the rotate actio, where it transforms from 0deg to 360deg*/
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
